@@ -1,25 +1,54 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Header from './components/header/Header';
+import TaskList from './components/tasklist/TaskList';
+import AddTaskForm from './components/addtaskform/AddTaskForm';
+import Footer from './components/footer/Footer';
 import './App.css';
 
-function App() {
+const App = () => {
+
+  // State to manage the list of tasks
+  const [tasks, setTasks] = useState([]);
+
+  // Function to add a new task to list
+  const addTask = (taskName) => {
+    const newTask = {
+      id: Date.now(),
+      name: taskName,
+      completed: false,
+    };
+    setTasks([...tasks,newTask]);
+  };
+
+  // Function to delete a task from the list
+  const deleteTask = (taskId) => {
+    setTasks(tasks.filter(task => task.id !== taskId));
+  };
+
+  // Function to toggle the completion status of a task
+  const toggleComplete = (taskId) => {
+    setTasks(tasks.map(task =>
+      task.id === taskId ? { ...task, completed: !task.completed } : task 
+      ));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  <>
+    <div className='main-container'>
+      {/* Header component */}
+      <Header title="To Do List" />
+
+      {/* AddTaskForm component */}
+      <AddTaskForm onAddTask={addTask} />
+
+      {/* TaskList component */}
+      <TaskList task={tasks} onDelete={deleteTask} onToggleComplete={toggleComplete} />
     </div>
+
+   {/* Footer component */}
+    <Footer />
+    </>
   );
-}
+};
 
 export default App;
