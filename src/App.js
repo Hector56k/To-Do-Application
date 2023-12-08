@@ -3,6 +3,7 @@ import Header from './components/header/Header';
 import TaskList from './components/tasklist/TaskList';
 import AddTaskForm from './components/addtaskform/AddTaskForm';
 import Footer from './components/footer/Footer';
+import TransitionalBackground from './components/transitionalbackground/TransitionalBackground';
 import './App.css';
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
 
   return (
   <>
+    <TransitionalBackground />
     <div className='main-container'>
       {/* Header component */}
       <Header title="To Do List" />
