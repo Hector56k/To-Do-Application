@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from './components/navbar/Navbar';
 import Header from './components/header/Header';
 import TaskList from './components/tasklist/TaskList';
 import AddTaskForm from './components/addtaskform/AddTaskForm';
@@ -37,6 +38,9 @@ const App = () => {
   <>
     <TransitionalBackground />
     <div className='main-container'>
+      {/* Navbar component */}
+      <Navbar />
+      
       {/* Header component */}
       <Header title="To Do List" />
 
